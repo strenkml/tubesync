@@ -130,18 +130,18 @@ class Source(models.Model):
 
     embed_metadata = models.BooleanField(
         _('embed metadata'),
-        default=False,
+        default=bool(settings.EMBED_METADATA_DEFAULT),
         help_text=_('Embed metadata from source into file')
     )
     embed_thumbnail = models.BooleanField(
         _('embed thumbnail'),
-        default=False,
+        default=bool(settings.EMBED_THUMBNAIL_DEFAULT),
         help_text=_('Embed thumbnail into the file')
     )
 
     enable_sponsorblock = models.BooleanField(
         _('enable sponsorblock'),
-        default=True,
+        default=bool(settings.ENABLE_SPONSORBLOCK_DEFAULT),
         help_text=_('Use SponsorBlock?')
     )
 
@@ -261,12 +261,12 @@ class Source(models.Model):
         _('index schedule'),
         choices=IndexSchedule.choices,
         db_index=True,
-        default=IndexSchedule.EVERY_24_HOURS,
+        default=int(settings.INDEX_SCHEDULE_DEFAULT),
         help_text=_('Schedule of how often to index the source for new media')
     )
     download_media = models.BooleanField(
         _('download media'),
-        default=True,
+        default=bool(settings.DOWNLOAD_MEDIA_DEFAULT),
         help_text=_('Download media from this source, if not selected the source will only be indexed')
     )
     download_cap = models.IntegerField(
@@ -277,12 +277,12 @@ class Source(models.Model):
     )
     delete_old_media = models.BooleanField(
         _('delete old media'),
-        default=False,
+        default=bool(settings.DELETE_OLD_MEDIA_DEFAULT),
         help_text=_('Delete old media after "days to keep" days?')
     )
     days_to_keep = models.PositiveSmallIntegerField(
         _('days to keep'),
-        default=14,
+        default=int(settings.DAYS_TO_KEEP_DEFAULT),
         help_text=_('If "delete old media" is ticked, the number of days after which '
                     'to automatically delete media')
     )
@@ -312,12 +312,12 @@ class Source(models.Model):
     )
     prefer_60fps = models.BooleanField(
         _('prefer 60fps'),
-        default=True,
+        default=bool(settings.PREFER_60FPS_DEFAULT),
         help_text=_('Where possible, prefer 60fps media for this source')
     )
     prefer_hdr = models.BooleanField(
         _('prefer hdr'),
-        default=False,
+        default=bool(settings.PREFER_HDR_DEFAULT),
         help_text=_('Where possible, prefer HDR media for this source')
     )
     fallback = models.CharField(
@@ -330,17 +330,17 @@ class Source(models.Model):
     )
     copy_thumbnails = models.BooleanField(
         _('copy thumbnails'),
-        default=False,
+        default=bool(settings.COPY_THUMBNAILS_DEFAULT),
         help_text=_('Copy thumbnails with the media, these may be detected and used by some media servers')
     )
     write_nfo = models.BooleanField(
         _('write nfo'),
-        default=False,
+        default=bool(settings.WRITE_NFO_DEFAULT),
         help_text=_('Write an NFO file in XML with the media info, these may be detected and used by some media servers')
     )
     write_json = models.BooleanField(
         _('write json'),
-        default=False,
+        default=bool(settings.WRITE_JSON_DEFAULT),
         help_text=_('Write a JSON file with the media info, these may be detected and used by some media servers')
     )
     has_failed = models.BooleanField(

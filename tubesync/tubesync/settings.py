@@ -1,4 +1,6 @@
 from pathlib import Path
+import os
+from ..sync.models import CapChoices, IndexSchedule
 
 
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -163,8 +165,26 @@ YOUTUBE_DEFAULTS = {
 }
 COOKIES_FILE = CONFIG_BASE_DIR / 'cookies.txt'
 
-
-MEDIA_FORMATSTR_DEFAULT = '{yyyy_mm_dd}_{source}_{title}_{key}_{format}.{ext}'
+#TODO: Fill in some of the defaults
+MEDIA_FORMATSTR_DEFAULT = os.getenv('MEDIA_FORMAT', '{yyyy_mm_dd}_{source}_{title}_{key}_{format}.{ext}')
+INDEX_SCHEDULE_DEFAULT = os.getenv('INDEX_SCHEDULE', "86400")
+DOWNLOAD_MEDIA_DEFAULT = os.getenv('DOWNLOAD_MEDIA', 'True')
+DOWNLOAD_CAP_DEFAULT = os.getenv('DOWNLOAD_CAP', "0")
+DELETE_OLD_MEDIA_DEFAULT = os.getenv('DELETE_OLD_MEDIA', 'False')
+DAYS_TO_KEEP_DEFAULT = os.getenv('DAYS_TO_KEEP', '14')
+SOURCE_RESOLUTION_DEFAULT = os.getenv('SOURCE_RESOLUTION_DEFAULT')
+SOURCE_VIDEO_CODEC_DEFAULT = os.getenv('SOURCE_VIDEO_CODEC')
+SOURCE_AUDIO_CODEC_DEFAULT = os.getenv('SOURCE_AUDIO_CODEC')
+PREFER_60FPS_DEFAULT = os.getenv('PREFER_60FPS', 'True')
+PREFER_HDR_DEFAULT = os.getenv('PREFER_HDR', 'False')
+FALLBACK_DEFAULT = os.getenv('FALLBACK')
+COPY_THUMBNAILS_DEFAULT = os.getenv('COPY_THUMBNAILS', 'False')
+WRITE_NFO_DEFAULT = os.getenv('WRITE_NFO', 'False')
+WRITE_JSON_DEFAULT = os.getenv('WRITE_JSON', 'False')
+EMBED_METADATA_DEFAULT = os.getenv('EMBED_METADATA', 'False')
+EMBED_THUMBNAIL_DEFAULT = os.getenv('EMBED_THUMBNAIL', 'False')
+ENABLE_SPONSORBLOCK_DEFAULT = os.getenv('ENABLE_SPONSORBLOCK', 'True')
+ENABLED_SPONSORBLOCKS_DEFAULT = os.getenv('ENABLED_SPONSORBLOCKS', 'all')
 
 
 try:
